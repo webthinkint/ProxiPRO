@@ -1,0 +1,42 @@
+{
+  "expo": {
+    "name": "Proxi PRO",
+    "owner": "webthink",
+    "slug": "ProxiPRO",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "plugins": [
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#333C50",
+          "image": "./assets/adaptive-icon.png",
+          "resizeMode": "contain",
+          "imageWidth": 320
+        }
+      ]
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.proxi.pro",
+      "icon": "./assets/icon.png",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "com.proxi.pro",
+      "adaptiveIcon": {
+        "backgroundColor": "#333C50",
+        "foregroundImage": "./assets/adaptive-icon.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "extra": {
+      "eas": {
+        "projectId": "1e1802c4-30db-4434-8afa-3513d24b6251"
+      }
+    }
+  }
+}

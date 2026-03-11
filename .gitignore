@@ -1,0 +1,15 @@
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Expo
+.expo/
+.expo-shared/
+
+# Xcode / macOS
+ios/Pods/
+DerivedData/
+
+# Android
+android/.gradle/
+android/app/build/
