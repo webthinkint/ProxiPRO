@@ -38,7 +38,7 @@ const DEV_HOST = 'https://pro.pinpointguru.com/';
 
 
 const SPLASH_HIDE_TIMEOUT_MS = 6000;
-const DEFAULT_COLOR = '#333C50';
+const DEFAULT_COLOR = '#003E7B';
 
 export default function App() {
   const webViewRef = useRef<WebView>(null);
@@ -81,18 +81,18 @@ export default function App() {
     setCurrentWebViewUrl((prev) => (prev === url ? prev : url));
   };
 
-  const subdomain = getSubdomain(currentWebViewUrl);
-  const safeAreaColor = industryHeaderColor(subdomain);
+//   const subdomain = getSubdomain(currentWebViewUrl);
+
 
   return (
     <SafeAreaProvider>
       <SafeAreaView
-        style={[styles.container, { backgroundColor: safeAreaColor }]}
+        style={[styles.container, { backgroundColor: DEFAULT_COLOR }]}
         edges={['top', 'left', 'right']}
       >
         <StatusBar style="light" />
         {loading && (
-          <View style={[styles.loadingBar, { backgroundColor: safeAreaColor }]}>
+          <View style={[styles.loadingBar, { backgroundColor: DEFAULT_COLOR }]}>
             <ActivityIndicator size="small" color="#FFF" />
           </View>
         )}

@@ -10,7 +10,7 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#333C50",
+          "backgroundColor": "#003E7B",
           "image": "./assets/adaptive-icon.png",
           "resizeMode": "contain",
           "imageWidth": 320
@@ -28,7 +28,7 @@
     "android": {
       "package": "com.proxi.pro",
       "adaptiveIcon": {
-        "backgroundColor": "#333C50",
+        "backgroundColor": "#003E7B",
         "foregroundImage": "./assets/adaptive-icon.png"
       },
       "predictiveBackGestureEnabled": false
