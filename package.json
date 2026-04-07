@@ -4,12 +4,20 @@
   "main": "index.ts",
   "scripts": {
     "start": "expo start",
+    "start:dev-client": "expo start --dev-client",
+    "start:port": "expo start --port 8082",
     "android": "expo start --android",
     "ios": "expo start --ios",
+    "dev:build:ios": "eas build --platform ios --profile development",
+    "dev:build:android": "eas build --platform android --profile development",
+    "dev:run:ios": "expo run:ios",
+    "dev:run:android": "expo run:android",
     "web": "expo start --web"
   },
   "dependencies": {
     "expo": "~55.0.5",
+    "expo-dev-client": "~55.0.14",
+    "expo-location": "~55.1.7",
     "expo-splash-screen": "~55.0.10",
     "expo-status-bar": "~55.0.4",
     "react": "19.2.0",

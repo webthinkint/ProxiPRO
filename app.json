@@ -8,12 +8,24 @@
     "icon": "./assets/icon.png",
     "plugins": [
       [
+        "expo-dev-client",
+        {
+          "launchMode": "most-recent"
+        }
+      ],
+      [
         "expo-splash-screen",
         {
           "backgroundColor": "#003E7B",
           "image": "./assets/adaptive-icon.png",
           "resizeMode": "contain",
           "imageWidth": 320
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "This app needs your location to show nearby services."
         }
       ]
     ],
@@ -22,6 +34,15 @@
       "bundleIdentifier": "com.proxi.pro",
       "icon": "./assets/icon.png",
       "infoPlist": {
+        "NSAppTransportSecurity": {
+          "NSAllowsArbitraryLoadsInWebContent": true,
+          "NSExceptionDomains": {
+            "local-pro.pinpointguru.com": {
+              "NSIncludesSubdomains": true,
+              "NSTemporaryExceptionAllowsInsecureHTTPLoads": true
+            }
+          }
+        },
         "ITSAppUsesNonExemptEncryption": false
       }
     },

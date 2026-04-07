@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import * as SplashScreen from 'expo-splash-screen';
+import * as Location from 'expo-location';
 import { StatusBar } from 'expo-status-bar';
 import { WebView } from 'react-native-webview';
 
@@ -34,7 +35,8 @@ const sub = subdomain.split('//')[1];
 SplashScreen.preventAutoHideAsync();
 
 const PROD_HOST = 'https://program.dotfit.com';
-const DEV_HOST = 'https://pro.pinpointguru.com/';
+const LOCAL_DEV_HOST = 'https://local-pro.pinpointguru.com:8081';
+const WEBVIEW_URL = LOCAL_DEV_HOST
 
 
 const SPLASH_HIDE_TIMEOUT_MS = 6000;
@@ -46,6 +48,7 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [canGoBack, setCanGoBack] = useState(false);
   const [currentWebViewUrl, setCurrentWebViewUrl] = useState('');
+  const [locationScript, setLocationScript] = useState('');
 
   const hideSplashOnce = useRef(() => {
     if (splashHiddenRef.current) return;
@@ -58,6 +61,18 @@ export default function App() {
       hideSplashOnce.current();
     }, SPLASH_HIDE_TIMEOUT_MS);
     return () => clearTimeout(timeout);
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') return;
+
+      const { coords } = await Location.getCurrentPositionAsync({});
+      setLocationScript(
+        `window.__nativeLocation = { longitude: ${coords.longitude}, latitude: ${coords.latitude} }; true;`
+      );
+    })();
   }, []);
 
   useEffect(() => {
@@ -97,11 +112,14 @@ export default function App() {
           </View>
         )}
         <WebView
+		 originWhitelist={['*']}
+		 geolocationEnabled
           ref={webViewRef}
-          source={{ uri:DEV_HOST }}
+          source={{ uri: WEBVIEW_URL }}
           style={styles.webView}
           javaScriptEnabled
           domStorageEnabled
+          injectedJavaScriptBeforeContentLoaded={locationScript}
           onLoadStart={({ nativeEvent }) => {
             setLoading(true);
             updateUrlFromWebView(nativeEvent.url);
